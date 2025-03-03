@@ -28,5 +28,5 @@ export function useTests() {
       })
   }, [])
 
-  return { tests, setTests, loading, error }
+  return { tests, loading, error }
 }

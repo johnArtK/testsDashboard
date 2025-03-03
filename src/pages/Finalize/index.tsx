@@ -5,7 +5,7 @@ import "./index.css"
 
 export const Finalize = () => {
   const { testId } = useParams()
-  const { test, loading, error } = useTest(testId ? +testId : null)
+  const { test, loading, error } = useTest(testId ? Number(testId) : null)
 
   if (loading) {
     return <main>Loading test...</main>

@@ -24,5 +24,5 @@ export function useTest(testId: number | null) {
       })
   }, [testId])
 
-  return { test, setTest, loading, error }
+  return { test, loading, error }
 }
