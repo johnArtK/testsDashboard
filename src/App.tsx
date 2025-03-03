@@ -9,7 +9,7 @@ import { Finalize } from "./pages/Finalize"
 import { Dashboard } from "./pages/Dashboard"
 import "./app.css"
 
-const App = () => (
+export const App = () => (
   <div className="app">
     <Router>
       <Routes>
@@ -21,5 +21,3 @@ const App = () => (
     </Router>
   </div>
 )
-
-export default App
