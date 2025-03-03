@@ -1,0 +1,34 @@
+.test-filter {
+  display: flex;
+  height: 44px;
+  margin: 30px 0 20px;
+  border: 1px solid #ebebeb;
+  border-radius: 15px;
+  background-color: #fff;
+  color: #d1d1d1;
+}
+
+.test-filter input {
+  padding: 15px 10px;
+  border-radius: 15px;
+  flex: 1;
+  outline: none;
+  border: none;
+}
+
+.test-filter input::placeholder {
+  color: #d1d1d1;
+}
+
+.test-count {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+.search-icon-filter {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
