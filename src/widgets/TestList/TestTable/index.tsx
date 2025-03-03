@@ -34,9 +34,9 @@ export const TestTable = ({ tests, onSort, sortOrder }: TestTableProps) => {
           <th onClick={onSort}>
             <span className="table-header-type">TYPE</span>
             {sortOrder === "asc" ? (
-              <img src="/icons/ShevronUp.svg" alt="" />
+              <img src="/icons/shevronUp.svg" alt="" />
             ) : (
-              <img src="/icons/ShevronDown.svg" alt="" />
+              <img src="/icons/shevronDown.svg" alt="" />
             )}
           </th>
           <th>STATUS</th>
