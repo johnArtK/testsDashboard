@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom"
-import { Test, TestStatus } from "../../../entities/test/model/types"
+import { Test } from "../../../entities/test/model/types"
 import { SortOrder } from "../../../entities/utils/sortTests"
-import { Button } from "../../../shared/ui/Button"
+import { StatusCell } from "./cells/StatusCell"
+import { TypeCell } from "./cells/TypeCell"
 import "./index.css"
 
 interface TestTableProps {
@@ -23,58 +23,38 @@ const STATUS_COLORS = {
   STOPPED: "#FE4848",
 }
 
-export const TestTable = ({ tests, onSort, sortOrder }: TestTableProps) => {
-  const navigate = useNavigate()
-
-  return (
-    <table className="test-table">
-      <thead>
-        <tr>
-          <th>NAME</th>
-          <th onClick={onSort}>
-            <span className="table-header-type">TYPE</span>
-            {sortOrder === "asc" ? (
-              <img src="/icons/shevronUp.svg" alt="" />
-            ) : (
-              <img src="/icons/shevronDown.svg" alt="" />
-            )}
-          </th>
-          <th>STATUS</th>
-          <th>SITE</th>
-          <th></th>
+export const TestTable = ({ tests, onSort, sortOrder }: TestTableProps) => (
+  <table className="test-table">
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th onClick={onSort}>
+          <TypeCell sortOrder={sortOrder} />
+        </th>
+        <th>STATUS</th>
+        <th>SITE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {tests.map((test) => (
+        <tr key={test.id}>
+          <td
+            style={{ borderLeft: `3px solid ${SITE_COLORS[test.siteId]}` }}
+            className="table-name"
+          >
+            {test.name}
+          </td>
+          <td>{test.type}</td>
+          <td style={{ color: `${STATUS_COLORS[test.status]}` }}>
+            {test.status}
+          </td>
+          <td>{test.site?.url ?? ""}</td>
+          <td>
+            <StatusCell satatus={test.status} testId={test.id} />
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        {tests.map((test) => (
-          <tr key={test.id}>
-            <td
-              style={{ borderLeft: `3px solid ${SITE_COLORS[test.siteId]}` }}
-              className="table-name"
-            >
-              {test.name}
-            </td>
-            <td>{test.type}</td>
-            <td style={{ color: `${STATUS_COLORS[test.status]}` }}>
-              {test.status}
-            </td>
-            <td>{test.site?.url ?? ""}</td>
-            <td>
-              {test.status !== TestStatus.DRAFT ? (
-                <Button
-                  onClick={() => navigate(`/finalize/${test.id}`)}
-                  text="Results"
-                />
-              ) : (
-                <Button
-                  onClick={() => navigate(`/results/${test.id}`)}
-                  text="Finalize"
-                  color="#7D7D7D"
-                />
-              )}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )
-}
+      ))}
+    </tbody>
+  </table>
+)
