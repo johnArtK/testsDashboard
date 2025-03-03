@@ -3,8 +3,6 @@ import { Test, TestStatus } from "../../../entities/test/model/types"
 import { SortOrder } from "../../../entities/utils/sortTests"
 import { Button } from "../../../shared/ui/Button"
 import "./index.css"
-import { ShevronUp } from "../../../shared/icons/ShevronUp"
-import { ShevronDown } from "../../../shared/icons/ShevronDown"
 
 interface TestTableProps {
   tests: Test[]
@@ -12,13 +10,13 @@ interface TestTableProps {
   sortOrder: SortOrder
 }
 
-const siteColors: Record<number, string> = {
+const SITE_COLORS: Record<number, string> = {
   1: "#E14165",
   2: "#c2c2ff",
   3: "#8686ff",
 }
 
-const statusColors = {
+const STATUS_COLORS = {
   DRAFT: "#5C5C5C",
   ONLINE: "#1BDA9D",
   PAUSED: "#FF8346",
@@ -35,7 +33,11 @@ export const TestTable = ({ tests, onSort, sortOrder }: TestTableProps) => {
           <th>NAME</th>
           <th onClick={onSort}>
             <span className="table-header-type">TYPE</span>
-            {sortOrder === "asc" ? <ShevronUp /> : <ShevronDown />}
+            {sortOrder === "asc" ? (
+              <img src="/icons/ShevronUp.svg" alt="" />
+            ) : (
+              <img src="/icons/ShevronDown.svg" alt="" />
+            )}
           </th>
           <th>STATUS</th>
           <th>SITE</th>
@@ -46,13 +48,13 @@ export const TestTable = ({ tests, onSort, sortOrder }: TestTableProps) => {
         {tests.map((test) => (
           <tr key={test.id}>
             <td
-              style={{ borderLeft: `3px solid ${siteColors[test.siteId]}` }}
+              style={{ borderLeft: `3px solid ${SITE_COLORS[test.siteId]}` }}
               className="table-name"
             >
               {test.name}
             </td>
             <td>{test.type}</td>
-            <td style={{ color: `${statusColors[test.status]}` }}>
+            <td style={{ color: `${STATUS_COLORS[test.status]}` }}>
               {test.status}
             </td>
             <td>{test.site?.url ?? ""}</td>

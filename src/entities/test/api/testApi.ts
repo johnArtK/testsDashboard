@@ -1,8 +1,8 @@
-import { baseUrl } from "../../../shared/configApi/baseUrl"
+import { BASE_URL } from "../../../shared/configApi/baseUrl"
 import { Test } from "../model/types"
 
 export async function fetchTests(): Promise<Test[]> {
-  const response = await fetch(`${baseUrl}/tests`)
+  const response = await fetch(`${BASE_URL}/tests`)
   if (!response.ok) {
     throw new Error(`Failed to fetch: ${response.status}`)
   }
@@ -10,6 +10,6 @@ export async function fetchTests(): Promise<Test[]> {
 }
 
 export async function fetchTestById(id: number): Promise<Test> {
-  const response = await fetch(`${baseUrl}/tests/${id}`)
+  const response = await fetch(`${BASE_URL}/tests/${id}`)
   return response.json()
 }

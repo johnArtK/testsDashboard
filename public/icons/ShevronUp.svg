@@ -1,4 +1,3 @@
-export const ShevronUp = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="13"
@@ -12,4 +11,4 @@ export const ShevronUp = () => (
   >
     <path d="M6 15l6-6 6 6" />
   </svg>
-)
+
